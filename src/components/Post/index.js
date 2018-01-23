@@ -16,7 +16,7 @@ export default class Post extends Component {
         comment:    PropTypes.string.isRequired,
         created:    PropTypes.number.isRequired,
         firstName:  PropTypes.string.isRequired,
-        deletePosts:  PropTypes.func.isRequired,
+        deletePosts:PropTypes.func.isRequired,
         id:         PropTypes.string.isRequired,
         lastName:   PropTypes.string.isRequired
 
@@ -28,11 +28,11 @@ export default class Post extends Component {
     }
 
     componentWillUpdate () {
-        console.log(this.props.id, 'will');
+        // console.log(this.props.id, 'will');
     }
 
     componentDidUpdate () {
-        console.log(this.props.id, 'did');
+        // console.log(this.props.id, 'did');
 
         // для дебага. если object Object, тогда обворачиваем в strignify
         // console.log(`this.props ------------------------------->>> ${this.props} ${JSON.stringify(this.props)}`);

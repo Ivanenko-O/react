@@ -5,7 +5,7 @@ import {fromTo } from 'gsap';
 
 
 // Instruments
-import { createPost } from '../../helpers/fetch'
+import { createPost, deletePost } from '../../helpers/fetch'
 import Styles from './styles';
 import Catcher from '../../components/Catcher';
 import Composer from '../../components/Composer';
@@ -64,34 +64,17 @@ export default class Feed extends Component {
         }));
     }
 
-    _createPost (comment){
+   async _createPost (comment){
         const { api, token } = this.context;
 
-
-        console.log(data);
-
-
-
         this.startFetching();
+
         try {
             const data = await createPost(comment, {api, token});
 
-        //     fetch(api, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             'Authorization': token
-        //         },
-        //         body: JSON.stringify({
-        //             comment
-        //         })
-        //     })
-        //     .then((response) => response.json())
-        //     .then(({ data}) => {
-        //         this.setState(({ posts} ) => ({
-        //             posts: [data, ...posts],
-        //         }))
-        // })
+            this.setState(( { posts } )=> ({
+                posts: [data, ...posts]
+            }))
         } catch ({ message }) {
             console.log(message);
         } finally {
@@ -101,29 +84,16 @@ export default class Feed extends Component {
 
     async _deletePosts(id) {
         const { api, token } = this.context;
-        const apiId =  `${api}/${id}`;
-
         this.startFetching();
+
         try {
-            const response = await fetch(apiId, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': token
-                }
-            });
-
-            if (response.status !== 204) {
-                throw new Error('post delete failed');
-            }
-
+            await deletePost(id, {api, token});
             this.setState((({posts}) => ({
                 posts: posts.filter((post) => id !== post.id),
             })));
-
         } catch ({ message }) {
             console.log(message);
         }
-
         this.stopFetching();
     }
 
