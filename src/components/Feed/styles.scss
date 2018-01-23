@@ -1,0 +1,45 @@
+@import '../../theme/palette';
+@import '../../theme/animations';
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100vw;
+    min-height: 100vh;
+    padding: 15px;
+    background-color: $paletteColor3;
+
+    h1 {
+        font-size: 50px;
+    }
+
+    h1, p {
+        margin: auto;
+        color: $paletteColor4;
+    }
+
+    .postInStart {
+        transform: scale(.3);
+        opacity: .01;
+    }
+
+    .postInEnd {
+        transform: scale(1);
+        transition: opacity 700ms $cubic1,
+                    transform 700ms $cubic1;
+        opacity: 1;
+    }
+
+    .postOutStart {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .postOutEnd {
+        transform: scale(.3);
+        transition: opacity 700ms $cubic1,
+                    transform 700ms $cubic1;
+        opacity: .01;
+    }
+}
