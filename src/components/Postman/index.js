@@ -1,7 +1,7 @@
 import React  from 'react';
-import {string} from 'prop-types';
+import { string } from 'prop-types';
 
-import Styles from './styles';
+import Styles from './styles.scss';
 import { CSSTransition, TransitionGroup, Transition } from 'react-transition-group';
 import {fromTo } from 'gsap';
 
@@ -13,8 +13,8 @@ const Postman  = (props,{firstName, avatar}) =>(
 );
 
 Postman.contextTypes = {
-    avatar: string.isRequired,
-    firstName: string.isRequired
+    avatar:     string.isRequired,
+    firstName:  string.isRequired
 };
 
 export default Postman;

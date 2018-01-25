@@ -28,11 +28,11 @@ export default class Post extends Component {
     }
 
     componentWillUpdate () {
-        // console.log(this.props.id, 'will');
+        console.log(this.props.id, 'will');
     }
 
     componentDidUpdate () {
-        // console.log(this.props.id, 'did');
+        console.log(this.props.id, 'did');
 
         // для дебага. если object Object, тогда обворачиваем в strignify
         // console.log(`this.props ------------------------------->>> ${this.props} ${JSON.stringify(this.props)}`);

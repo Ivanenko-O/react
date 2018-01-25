@@ -71,7 +71,7 @@ export default class Feed extends Component {
 
         try {
             const data = await createPost(comment, {api, token});
-
+            console.log(data);
             this.setState(( { posts } )=> ({
                 posts: [data, ...posts]
             }))
@@ -102,7 +102,7 @@ export default class Feed extends Component {
 
         this.startFetching();
         try {
-            const response = await fetch(`${api}?size=30&page1`);
+            const response = await fetch(`${api}?size=10&page=1`);
 
             if( response.status !== 200 ) {
                 throw new Error('posts fetch failed');
@@ -203,7 +203,7 @@ export default class Feed extends Component {
         const { posts: postsData, spin } = this.state;
         const lengthPost = postsData.length ? postsData.length : 0;
 
-        const posts = postsData.map((posts) =>
+        const posts = postsData.map((post) =>
 
              (<CSSTransition
                 classNames = {{
@@ -212,10 +212,10 @@ export default class Feed extends Component {
                     exit:           Styles.postOutStart,
                     exitActive:     Styles.postOutEnd
                 }}
-                key = { posts.id }
+                key = { post.id }
                 timeout = {{ enter: 700, exit: 600 }}>
                 <Catcher>
-                    <Post { ...posts }
+                    <Post { ...post }
                           deletePosts = { this.deletePosts }
                     />
                 </Catcher>

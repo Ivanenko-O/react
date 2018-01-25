@@ -8,20 +8,11 @@ export const createPost = async (comment, { api, token }) => {
             body: JSON.stringify({
                 comment
             })
-        })
-        .then((response) => response.json())
-        .then(({ data}) => {
-            this.setState(({ posts} ) => ({
-                posts: [data, ...posts],
-            }))
-        })
-
+        });
         if (response.status !== 200) {
             throw new Error( 'Failed to create new post ');
         }
-
         const { data } = await response.json();
-
         return data;
 };
 

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Styles from './styles';
+import Styles from './styles.scss';
 import { getRandomColor } from "../../helpers/index";
 
 export default class Composer extends Component {
     static contextTypes = {
         avatar:    PropTypes.string.isRequired,
-        firstName: PropTypes.string.isRequired
+        firstName: PropTypes.string.isRequired,
+        groupId:   PropTypes.string,
+        lastName:  PropTypes.string
     }
     static propTypes = {
         createPost:  PropTypes.func.isRequired
