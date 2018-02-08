@@ -8,7 +8,12 @@ const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeM
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
+const SpritesmithPlugin = require('webpack-spritesmith');
 const paths = require('./paths');
+
+const cwd =  path.resolve('../src/theme/assets/icons', 'src/theme/ico')
+console.log(cwd);
+
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -271,6 +276,19 @@ module.exports = {
         // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
         // You can remove this if you don't use Moment.js:
         // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+        new SpritesmithPlugin({
+            src: {
+                cwd: path.resolve('../src/theme/assets/icons', 'src/theme/ico'),
+                glob: '*.png'
+            },
+            target: {
+                image: path.resolve('../src/theme/assets/icons', 'src/theme/spritesmith-generated/sprite.png'),
+                css: path.resolve('../src/theme/assets/icons', 'src/theme/spritesmith-generated/sprite.scss')
+            },
+            apiOptions: {
+                cssImageRef: "~sprite.png"
+            }
+        })
     ],
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

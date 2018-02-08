@@ -1,10 +1,15 @@
 // Core
 import React, {Component} from 'react';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { routes } from '../../routers';
 
+import Navigation from '../../components/Navigation';
 import Catcher from '../../components/Catcher';
 import Feed from '../../components/Feed';
-import avatar from '../../theme/assets/homer.png';
+import Profile from '../../components/Profile';
+import avatar from '../../theme/assets/icons/homer.png';
+
 
 const GROUP_ID = 'pumOFDxHP9';
 const TOKEN = 'rv8NWU2E5g';
@@ -17,7 +22,7 @@ const options = {
     token: TOKEN
 };
 
-export default class App extends Component {
+class App extends Component {
     static childContextTypes = {
         api:        PropTypes.string.isRequired,
         avatar:     PropTypes.string.isRequired,
@@ -31,11 +36,19 @@ export default class App extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <Catcher>
-                {/*<Feed { ...options } />*/}
-                <Feed/>
+                <Navigation/>
+                <Switch>
+                    <Route component = { Feed } path = { routes.feed} />
+                    <Route component = { Profile }  path = { routes.profile} />
+                    <Redirect to = { routes.feed } />
+                </Switch>
+                {/*<Feed/>*/}
             </Catcher>
         );
     }
 }
+
+export default withRouter(App);

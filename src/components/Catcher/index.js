@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { oneOfType, object, array } from 'prop-types';
 
 import Styles from './styles';
 
 export default class Catcher extends Component {
     static propTypes = {
-        children: PropTypes.object.isRequired
-    }
+        children: oneOfType([object, array])
+    };
     state = {
         error: false
-    }
+    };
 
     componentDidCatch (error, stack){
         this.setState({

@@ -53,13 +53,15 @@ export default class Post extends Component {
     render () {
         const { avatar, id, comment, created, firstName, lastName } = this.props;
         const { firstName: ownFirstName, lastName: ownLastName } = this.context;
+        console.log(created);
 
         return (
 
             <section className = { Styles.post }>
                 <img className = { Styles.avatar } alt = 'homer' src = { avatar } />
                 <a href = { id }> { firstName } { lastName }</a>
-                <time>It is {moment().format('MMMM D h:mm:ss a')}.</time>
+                <time>{moment.unix(created).format('MMMM D h:mm:ss a')}</time>
+                {/*<time>{ created }</time>*/}
                 <p> { comment } </p>
 
                 { `${ownFirstName} ${ownLastName}` === `${firstName} ${lastName}`

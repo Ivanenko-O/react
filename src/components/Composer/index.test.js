@@ -7,7 +7,7 @@ import Composer from './';
 configure({ adapter: new Adapter() });
 
 const options = {
-    firstName: 'Andrey',
+    firstName: 'Olesia',
     avatar: 'http://example.com/avatar.jpg'
 };
 
@@ -73,7 +73,7 @@ describe('Composer component: ', () => {
 
         expect(result.state()).toEqual(state);
         expect(result.find('textarea').text()).toBe('');
-    })
+    });
 
     test(`component state and textarea value should be reflect according changes if form is submitted`, () => {
         result.find('form').simulate('submit');

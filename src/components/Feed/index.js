@@ -21,7 +21,7 @@ export default class Feed extends Component {
     static contextTypes = {
         api:    PropTypes.string.isRequired,
         token: PropTypes.string.isRequired
-    }
+    };
 
     state = {
         posts: [],
@@ -32,25 +32,27 @@ export default class Feed extends Component {
     constructor() {
         super();
 
-        this.createPost = :: this._createPost;
-        this.getPosts = :: this._getPosts;
-        this.deletePosts = :: this._deletePosts;
+        this.createPost = ::this._createPost;
+        this.getPosts = ::this._getPosts;
+        this.deletePosts = ::this._deletePosts;
         this.startFetching = ::this._startFetching;
         this.stopFetching = ::this._stopFetching;
         this.handleComposerAppear = ::this._handleComposerAppear;
         this.handleCounterAppear = ::this._handleCounterAppear;
-        this.handlePostmanAppear = :: this._handlePostmanAppear;
-        this.handlePostmanDisapear = :: this._handlePostmanDisapear;
+        this.handlePostmanAppear = ::this._handlePostmanAppear;
+        this.handlePostmanDisapear = ::this._handlePostmanDisapear;
     }
 
     async componentDidMount () {
         await this.getPosts();
     }
-    async componentWillUmount () {
-        clearInterval(this.interval);
-    }
 
-    interval = setInterval(() => this.getPosts(), 1000);
+
+    // async componentWillUnMount () {
+    //     clearInterval(this.interval);
+    // }
+
+    // interval = setInterval(() => this.getPosts(), 1000);
 
     _startFetching () {
         this.setState(()=> ({
@@ -72,7 +74,7 @@ export default class Feed extends Component {
         try {
             const data = await createPost(comment, {api, token});
             console.log(data);
-            this.setState(( { posts } )=> ({
+            this.setState(( { posts } ) => ({
                 posts: [data, ...posts]
             }))
         } catch ({ message }) {
@@ -168,6 +170,7 @@ export default class Feed extends Component {
             {
                 x:          0,
                 opacity:    1,
+                textDecoration: underline,
                 onComplete: () => {
                     // setTimeout(() => this.setState({
                     //     postman: false
@@ -207,10 +210,10 @@ export default class Feed extends Component {
 
              (<CSSTransition
                 classNames = {{
-                    enter:          Styles.postInStart,
-                    enterActive:    Styles.postInEnd,
-                    exit:           Styles.postOutStart,
-                    exitActive:     Styles.postOutEnd
+                        enter:          Styles.postInStart,
+                        enterActive:    Styles.postInEnd,
+                        exit:           Styles.postOutStart,
+                        exitActive:     Styles.postOutEnd
                 }}
                 key = { post.id }
                 timeout = {{ enter: 700, exit: 600 }}>

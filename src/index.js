@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 
 // Instruments
 import './theme/reset.css';
+import { BrowserRouter } from 'react-router-dom';
+import { Navigation } from './components/Navigation';
 
 // App
 import App from './containers/App';
@@ -22,5 +24,9 @@ import App from './containers/App';
 // Чтобы посмотреть сразу в консоли press tab
 // console.log(element);
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
+    document.getElementById('root'));
 // ReactDOM.render(<ul>{arr}</ul>, document.getElementById('root'));

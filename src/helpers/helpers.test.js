@@ -22,7 +22,7 @@ describe('helpers: ', () => {
 
     test('getUniqueID function should be uniquire', () => {
         const arr = new Set();
-        const num = 100;
+        const num = 1000;
 
         for(let i = 0; i < num; i++){
             arr.add(getUniqueID());

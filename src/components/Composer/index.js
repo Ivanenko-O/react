@@ -10,15 +10,15 @@ export default class Composer extends Component {
         firstName: PropTypes.string.isRequired,
         groupId:   PropTypes.string,
         lastName:  PropTypes.string
-    }
+    };
     static propTypes = {
         createPost:  PropTypes.func.isRequired
-    }
+    };
 
     state = {
         comment: '',
         avatarBorderColor: 'red'
-    }
+    };
 
     constructor() {
         super();
